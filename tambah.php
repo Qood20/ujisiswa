@@ -1,18 +1,19 @@
 <?php
 require_once 'koneksi.php';
 
-// Cek apakah form sudah di-submit (tombol simpan ditekan)
+// Cek apakah form sudah di-submit
 if (isset($_POST['simpan'])) {
-    // Ambil data dari form
-    $nis           = mysqli_real_escape_string($koneksi, $_POST['nis']);
-    $nama          = mysqli_real_escape_string($koneksi, $_POST['nama']);
-    $kelas         = mysqli_real_escape_string($koneksi, $_POST['kelas']);
-    $jenis_kelamin = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']);
-    $alamat        = mysqli_real_escape_string($koneksi, $_POST['alamat']);
+    // Ambil data dari form dengan aman
+    $nis           = mysqli_real_escape_string($koneksi, $_POST['nis'] ?? '');
+    $nama          = mysqli_real_escape_string($koneksi, $_POST['nama'] ?? '');
+    $kelas         = mysqli_real_escape_string($koneksi, $_POST['kelas'] ?? '');
+    $jenis_kelamin = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin'] ?? '');
+    $alamat        = mysqli_real_escape_string($koneksi, $_POST['alamat'] ?? '');
 
-    // Query untuk memasukkan data ke tabel (sesuaikan nama tabel jika kamu pakai 'siswa' atau 'table_siswa')
-    $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat) 
-              VALUES ('$nis', '$nama', '$kelas', '$jenis_kelamin', '$alamat')";
+    // Sesuaikan nama tabel jika di phpMyAdmin kamu 'siswa' atau 'table_siswa'
+    // Di bawah ini menggunakan 'table_siswa'
+    $query = "INSERT INTO table_siswa (nis, nama, kelas, `jenis kelamin`, alamat) 
+          VALUES ('$nis', '$nama', '$kelas', '$jenis_kelamin', '$alamat')";
 
     // Jalankan query
     if (mysqli_query($koneksi, $query)) {
