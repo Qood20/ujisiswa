@@ -1,7 +1,7 @@
 <?php
 require_once 'koneksi.php';
 
-$query = "SELECT * FROM siswa ORDER BY id DESC";
+$query = "SELECT * FROM table_siswa ORDER BY id DESC";
 $result = mysqli_query($koneksi, $query);
 ?>
 
